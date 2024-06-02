@@ -1,9 +1,13 @@
+import HelmetHook from "../../../hooks/HelmetHook";
+
 
 const Home = () => {
     return (
-        <div>
+        <>
+            <HelmetHook name={"Home"}></HelmetHook>
+
             This is faking home
-        </div>
+        </>
     );
 };
 
