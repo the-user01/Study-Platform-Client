@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +11,7 @@ import HelmetHook from "../../hooks/HelmetHook";
 
 const Login = () => {
 
-    const { signIn, googleSignIn } = useAuth();
+    const { signIn, googleSignIn, githubSignIn } = useAuth();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -50,6 +50,19 @@ const Login = () => {
         googleSignIn()
             .then(() => {
 
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Login Successful",
+                });
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(error => console.log(error))
+    }
+
+    const handleGithubLogin = () => {
+        githubSignIn()
+            .then(() => {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -107,6 +120,10 @@ const Login = () => {
 
                         <div className="mx-2 mb-4">
                             <button className="btn btn-outline btn-success w-full text-lg" onClick={handleGoogleLogin}><FaGoogle /> Google</button>
+                        </div>
+
+                        <div className="mx-2 mb-4">
+                            <button className="btn btn-outline btn-success w-full text-lg" onClick={handleGithubLogin}><FaGithub className="text-black" /> Github</button>
                         </div>
 
                         <div className="text-center p-4">
