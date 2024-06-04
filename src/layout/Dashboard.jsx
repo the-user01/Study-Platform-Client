@@ -1,9 +1,16 @@
 import { DiMaterializecss } from 'react-icons/di';
 import { FaHome, FaUsers } from 'react-icons/fa';
-import { SiSession } from 'react-icons/si';
+import { GiExplosiveMaterials } from 'react-icons/gi';
+import { GrNotes } from 'react-icons/gr';
+import { SiSession, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
+
+    const isAdmin = false;
+    const isTutor = true;
+    const isStudent = true;
+
     return (
         <div className='flex'>
 
@@ -23,10 +30,39 @@ const Dashboard = () => {
 
                             {/* Admin  Sidebar content here */}
 
-                            <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/admin-home'><FaHome></FaHome>Admin Home</NavLink></li>
-                            <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-users'><FaUsers></FaUsers> All Users</NavLink></li>
-                            <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-sessions'><SiSession></SiSession> All Study Sessions</NavLink></li>
-                            <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-materials'><DiMaterializecss></DiMaterializecss> All Materials</NavLink></li>
+                            {
+                                isAdmin &&
+                                <>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/admin-home'><FaHome></FaHome>Admin Home</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-users'><FaUsers></FaUsers> All Users</NavLink></li>
+
+                                    <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-sessions'><SiSession></SiSession> All Study Sessions</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/all-materials'><DiMaterializecss></DiMaterializecss> All Materials</NavLink></li>
+                                </>
+                            }
+
+
+
+                            {/* Tutor  Sidebar content here */}
+
+                            {
+                                isTutor &&
+                                <>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/tutor-home'><FaHome></FaHome>Tutor Home</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-session'><SiStudyverse></SiStudyverse> Create Study Session</NavLink></li>
+
+                                    <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-all-sessions'><SiSession></SiSession> View All Study Sessions</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/upload-materials'><GiExplosiveMaterials></GiExplosiveMaterials> Upload Materials</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-materials'><DiMaterializecss></DiMaterializecss> View Materials</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-notes'><GrNotes></GrNotes> View Notes</NavLink></li>
+                                </>
+                            }
 
                             <div className="divider"></div>
 

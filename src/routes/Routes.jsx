@@ -11,6 +11,9 @@ import AllUsers from "../pages/Dashboard/admin/AllUsers/AllUsers";
 import AdminHome from "../pages/Dashboard/admin/AdminHome/AdminHome";
 import StudySessions from "../pages/Dashboard/admin/StudySessions/StudySessions";
 import AllMaterials from "../pages/Dashboard/admin/AllMaterials/AllMaterials";
+import TutorHome from "../pages/Dashboard/tutor/TutorHome/TutorHome";
+import CreateSession from "../pages/Dashboard/tutor/CreateSession/CreateSession";
+import AllStudySession from "../pages/Dashboard/tutor/AllStudySession/AllStudySession";
 
 
 const router = createBrowserRouter([
@@ -53,6 +56,21 @@ const router = createBrowserRouter([
       {
         path: 'all-materials',
         element: <AllMaterials></AllMaterials>
+      },
+
+      // Tutor Routes
+
+      {
+        path: 'tutor-home',
+        element: <TutorHome></TutorHome>
+      },
+      {
+        path: 'create-session',
+        element: <CreateSession></CreateSession>
+      },
+      {
+        path: 'view-all-sessions',
+        element: <AllStudySession></AllStudySession>
       },
     ]
   }

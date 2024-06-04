@@ -7,6 +7,10 @@ import { FiSun } from "react-icons/fi";
 
 const Navbar = () => {
 
+    const isAdmin = false;
+    const isTutor = true;
+    const isStudent = true;
+
     const [theme, setTheme] = useState(
         localStorage.getItem('theme') ? localStorage.getItem("theme") : "light"
     );
@@ -32,8 +36,13 @@ const Navbar = () => {
     const navList = <>
         <li className="mr-4"><NavLink to='/'>Home</NavLink></li>
         {
-            user && <>
-                <li className="mr-4"><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
+            user && isAdmin && <>
+                <li className="mr-4"><Link to='/dashboard/admin-home'>Dashboard</Link></li>
+            </>
+        }
+        {
+            user && isTutor && <>
+                <li className="mr-4"><Link to='/dashboard/tutor-home'>Dashboard</Link></li>
             </>
         }
     </>
