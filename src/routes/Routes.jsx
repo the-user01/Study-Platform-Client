@@ -14,6 +14,9 @@ import AllMaterials from "../pages/Dashboard/admin/AllMaterials/AllMaterials";
 import TutorHome from "../pages/Dashboard/tutor/TutorHome/TutorHome";
 import CreateSession from "../pages/Dashboard/tutor/CreateSession/CreateSession";
 import AllStudySession from "../pages/Dashboard/tutor/AllStudySession/AllStudySession";
+import UploadMaterial from "../pages/Dashboard/tutor/UploadMaterial/UploadMaterial";
+import ViewMaterials from "../pages/Dashboard/tutor/ViewMaterials/ViewMaterials";
+import ViewNotes from "../pages/Dashboard/tutor/ViewNotes/ViewNotes";
 
 
 const router = createBrowserRouter([
@@ -58,6 +61,7 @@ const router = createBrowserRouter([
         element: <AllMaterials></AllMaterials>
       },
 
+      
       // Tutor Routes
 
       {
@@ -71,6 +75,18 @@ const router = createBrowserRouter([
       {
         path: 'view-all-sessions',
         element: <AllStudySession></AllStudySession>
+      },
+      {
+        path: 'upload-materials',
+        element: <UploadMaterial></UploadMaterial>
+      },
+      {
+        path: 'view-materials',
+        element: <ViewMaterials></ViewMaterials>
+      },
+      {
+        path: 'view-notes',
+        element: <ViewNotes></ViewNotes>
       },
     ]
   }
