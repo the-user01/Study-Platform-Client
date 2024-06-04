@@ -31,11 +31,9 @@ const Navbar = () => {
 
     const navList = <>
         <li className="mr-4"><NavLink to='/'>Home</NavLink></li>
-        <li className="mr-4"><NavLink to='/all-books'>All Books</NavLink></li>
         {
             user && <>
-                <li className="mr-4"><NavLink to='/add-books'>Add Books</NavLink></li>
-                <li className="mr-4"><NavLink to={`/borrowed-books/email/${user?.email}`}>Borrowed Books</NavLink></li>
+                <li className="mr-4"><NavLink to='/dashboard'>Dashboard</NavLink></li>
             </>
         }
     </>
