@@ -7,6 +7,11 @@ import Home from "../pages/Home/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import Dashboard from "../layout/Dashboard";
+import AllUsers from "../pages/Dashboard/admin/AllUsers/AllUsers";
+import AdminHome from "../pages/Dashboard/admin/AdminHome/AdminHome";
+import StudySessions from "../pages/Dashboard/admin/StudySessions/StudySessions";
+import AllMaterials from "../pages/Dashboard/admin/AllMaterials/AllMaterials";
+
 
 const router = createBrowserRouter([
   {
@@ -32,9 +37,23 @@ const router = createBrowserRouter([
     path: 'dashboard',
     element: <Dashboard></Dashboard>,
     children: [
+      /* Admin Route */
       {
-        
-      }
+        path: 'admin-home',
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: 'all-users',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'all-sessions',
+        element: <StudySessions></StudySessions>
+      },
+      {
+        path: 'all-materials',
+        element: <AllMaterials></AllMaterials>
+      },
     ]
   }
 ]);

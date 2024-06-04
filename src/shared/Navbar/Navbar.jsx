@@ -33,7 +33,7 @@ const Navbar = () => {
         <li className="mr-4"><NavLink to='/'>Home</NavLink></li>
         {
             user && <>
-                <li className="mr-4"><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                <li className="mr-4"><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
             </>
         }
     </>
