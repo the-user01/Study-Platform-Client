@@ -8,7 +8,7 @@ import { FiSun } from "react-icons/fi";
 const Navbar = () => {
 
     const isAdmin = false;
-    const isTutor = true;
+    const isTutor = false;
     const isStudent = true;
 
     const [theme, setTheme] = useState(
@@ -43,6 +43,11 @@ const Navbar = () => {
         {
             user && isTutor && <>
                 <li className="mr-4"><Link to='/dashboard/tutor-home'>Dashboard</Link></li>
+            </>
+        }
+        {
+            user && isStudent && <>
+                <li className="mr-4"><Link to='/dashboard/student-home'>Dashboard</Link></li>
             </>
         }
     </>

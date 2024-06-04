@@ -1,3 +1,4 @@
+import { CgNotes } from 'react-icons/cg';
 import { DiMaterializecss } from 'react-icons/di';
 import { FaHome, FaUsers } from 'react-icons/fa';
 import { GiExplosiveMaterials } from 'react-icons/gi';
@@ -8,7 +9,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 const Dashboard = () => {
 
     const isAdmin = false;
-    const isTutor = true;
+    const isTutor = false;
     const isStudent = true;
 
     return (
@@ -50,7 +51,7 @@ const Dashboard = () => {
                             {
                                 isTutor &&
                                 <>
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/tutor-home'><FaHome></FaHome>Tutor Home</NavLink></li>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/student-home'><FaHome></FaHome>Tutor Home</NavLink></li>
 
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-session'><SiStudyverse></SiStudyverse> Create Study Session</NavLink></li>
 
@@ -61,6 +62,25 @@ const Dashboard = () => {
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-materials'><DiMaterializecss></DiMaterializecss> View Materials</NavLink></li>
 
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-notes'><GrNotes></GrNotes> View Notes</NavLink></li>
+                                </>
+                            }
+
+
+
+                            {/* Student  Sidebar content here */}
+
+                            {
+                                isStudent &&
+                                <>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/tutor-home'><FaHome></FaHome>Student Home</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/booked-session'><SiStudyverse></SiStudyverse> Booked Session</NavLink></li>
+
+                                    <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-note'><GrNotes></GrNotes>Create Note</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/personal-notes'><CgNotes></CgNotes> Manage Personal Notes</NavLink></li>
+
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-study-materials'><DiMaterializecss></DiMaterializecss> View Study Materials</NavLink></li>
                                 </>
                             }
 

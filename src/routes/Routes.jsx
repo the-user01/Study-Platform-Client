@@ -17,6 +17,7 @@ import AllStudySession from "../pages/Dashboard/tutor/AllStudySession/AllStudySe
 import UploadMaterial from "../pages/Dashboard/tutor/UploadMaterial/UploadMaterial";
 import ViewMaterials from "../pages/Dashboard/tutor/ViewMaterials/ViewMaterials";
 import ViewNotes from "../pages/Dashboard/tutor/ViewNotes/ViewNotes";
+import StudentHome from "../pages/Dashboard/student/StudentHome/StudentHome";
 
 
 const router = createBrowserRouter([
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
         element: <AllMaterials></AllMaterials>
       },
 
-      
+
       // Tutor Routes
 
       {
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
       {
         path: 'view-notes',
         element: <ViewNotes></ViewNotes>
+      },
+
+
+      // Student Route
+
+      {
+        path: 'student-home',
+        element: <StudentHome></StudentHome>
       },
     ]
   }
