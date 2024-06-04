@@ -3,7 +3,7 @@ import { DiMaterializecss } from 'react-icons/di';
 import { FaHome, FaUsers } from 'react-icons/fa';
 import { GiExplosiveMaterials } from 'react-icons/gi';
 import { GrNotes } from 'react-icons/gr';
-import { SiSession, SiStudyverse } from 'react-icons/si';
+import { SiSession, SiSessionize, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -72,9 +72,9 @@ const Dashboard = () => {
                             {
                                 isStudent &&
                                 <>
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/tutor-home'><FaHome></FaHome>Student Home</NavLink></li>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/student-home'><FaHome></FaHome>Student Home</NavLink></li>
 
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/booked-session'><SiStudyverse></SiStudyverse> Booked Session</NavLink></li>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/booked-session'><SiSessionize></SiSessionize> Booked Session</NavLink></li>
 
                                     <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-note'><GrNotes></GrNotes>Create Note</NavLink></li>
 

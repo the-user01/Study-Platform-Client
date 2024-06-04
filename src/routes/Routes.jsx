@@ -18,6 +18,10 @@ import UploadMaterial from "../pages/Dashboard/tutor/UploadMaterial/UploadMateri
 import ViewMaterials from "../pages/Dashboard/tutor/ViewMaterials/ViewMaterials";
 import ViewNotes from "../pages/Dashboard/tutor/ViewNotes/ViewNotes";
 import StudentHome from "../pages/Dashboard/student/StudentHome/StudentHome";
+import BookedSession from "../pages/Dashboard/student/BookedSession/BookedSession";
+import CreateNote from "../pages/Dashboard/student/CreateNote/CreateNote";
+import PersonalNotes from "../pages/Dashboard/student/PersonalNotes/PersonalNotes";
+import StudyMaterials from "../pages/Dashboard/student/StudyMaterials/StudyMaterials";
 
 
 const router = createBrowserRouter([
@@ -96,6 +100,22 @@ const router = createBrowserRouter([
       {
         path: 'student-home',
         element: <StudentHome></StudentHome>
+      },
+      {
+        path: 'booked-session',
+        element: <BookedSession></BookedSession>
+      },
+      {
+        path: 'create-note',
+        element: <CreateNote></CreateNote>
+      },
+      {
+        path: 'personal-notes',
+        element: <PersonalNotes></PersonalNotes>
+      },
+      {
+        path: 'view-study-materials',
+        element: <StudyMaterials></StudyMaterials>
       },
     ]
   }
