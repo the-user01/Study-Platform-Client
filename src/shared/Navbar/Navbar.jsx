@@ -7,9 +7,9 @@ import { FiSun } from "react-icons/fi";
 
 const Navbar = () => {
 
-    const isAdmin = false;
+    const isAdmin = true;
     const isTutor = false;
-    const isStudent = true;
+    const isStudent = false;
 
     const [theme, setTheme] = useState(
         localStorage.getItem('theme') ? localStorage.getItem("theme") : "light"

@@ -8,9 +8,9 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
 
-    const isAdmin = false;
+    const isAdmin = true;
     const isTutor = false;
-    const isStudent = true;
+    const isStudent = false;
 
     return (
         <div className='flex'>

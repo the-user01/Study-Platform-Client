@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import HelmetHook from "../../hooks/HelmetHook";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const axiosPublic = useAxiosPublic();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -48,27 +50,45 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleSignIn()
-            .then(() => {
+            .then((result) => {
 
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Login Successful",
-                });
-                navigate(location?.state ? location.state : '/');
+                const userInfo = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: "Student"
+                }
+
+                axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Login Successful",
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
             })
             .catch(error => console.log(error))
     }
 
     const handleGithubLogin = () => {
         githubSignIn()
-            .then(() => {
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Login Successful",
-                });
-                navigate(location?.state ? location.state : '/');
+            .then((result) => {
+                const userInfo = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: "Student"
+                }
+
+                axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Login Successful",
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
             })
             .catch(error => console.log(error))
     }

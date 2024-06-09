@@ -6,6 +6,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import HelmetHook from "../../hooks/HelmetHook";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Register = () => {
@@ -13,6 +14,8 @@ const Register = () => {
     const { createUser, updateUser, logOut } = useAuth()
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate()
 
@@ -45,17 +48,24 @@ const Register = () => {
                 updateUser(name, photoUrl)
                     .then(() => {
                         // send data to database
+                        const userInfo = {
+                            name: name,
+                            email: email,
+                            role: role
+                        }
 
-                         
-
-
-                            Swal.fire({
-                                icon: "success",
-                                title: "Success",
-                                text: "Registration Successful",
-                            });
-                            logOut();
-                            navigate('/login')
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Success",
+                                        text: "Registration Successful",
+                                    });
+                                    logOut();
+                                    navigate('/login')
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
             })

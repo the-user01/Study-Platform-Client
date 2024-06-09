@@ -22,6 +22,7 @@ import BookedSession from "../pages/Dashboard/student/BookedSession/BookedSessio
 import CreateNote from "../pages/Dashboard/student/CreateNote/CreateNote";
 import PersonalNotes from "../pages/Dashboard/student/PersonalNotes/PersonalNotes";
 import StudyMaterials from "../pages/Dashboard/student/StudyMaterials/StudyMaterials";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     children: [
       /* Admin Route */
       {
