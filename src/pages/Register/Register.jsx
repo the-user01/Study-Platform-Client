@@ -23,7 +23,7 @@ const Register = () => {
 
         const name = form.get('name');
         const photoUrl = form.get('photoUrl');
-        const registeredRole = form.get('role');
+        const role = form.get('role');
         const email = form.get('email');
         const password = form.get('password');
 
@@ -42,19 +42,13 @@ const Register = () => {
 
         createUser(email, password)
             .then(() => {
-
                 updateUser(name, photoUrl)
                     .then(() => {
-                        if (registeredRole === 'Admin') {
-                            Swal.fire({
-                                icon: "info",
-                                title: "Success",
-                                text: "Registration Successful",
-                            });
-                            logOut();
-                            navigate('/login')
-                        }
-                        else {
+                        // send data to database
+
+                         
+
+
                             Swal.fire({
                                 icon: "success",
                                 title: "Success",
@@ -62,15 +56,12 @@ const Register = () => {
                             });
                             logOut();
                             navigate('/login')
-                        }
                     })
                     .catch(error => console.log(error))
             })
             .catch(error => console.log(error))
 
         e.target.reset();
-
-
     }
 
     return (
