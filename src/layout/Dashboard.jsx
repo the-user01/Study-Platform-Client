@@ -5,10 +5,11 @@ import { GiExplosiveMaterials } from 'react-icons/gi';
 import { GrNotes } from 'react-icons/gr';
 import { SiSession, SiSessionize, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     const isTutor = false;
     const isStudent = false;
 
