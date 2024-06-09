@@ -23,6 +23,7 @@ import CreateNote from "../pages/Dashboard/student/CreateNote/CreateNote";
 import PersonalNotes from "../pages/Dashboard/student/PersonalNotes/PersonalNotes";
 import StudyMaterials from "../pages/Dashboard/student/StudyMaterials/StudyMaterials";
 import PrivateRoutes from "./PrivateRoutes";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -52,19 +53,19 @@ const router = createBrowserRouter([
       /* Admin Route */
       {
         path: 'admin-home',
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: 'all-users',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: 'all-sessions',
-        element: <StudySessions></StudySessions>
+        element: <AdminRoute><StudySessions></StudySessions></AdminRoute>
       },
       {
         path: 'all-materials',
-        element: <AllMaterials></AllMaterials>
+        element: <AdminRoute><AllMaterials></AllMaterials></AdminRoute>
       },
 
 
