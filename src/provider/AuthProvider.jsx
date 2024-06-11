@@ -15,17 +15,30 @@ const AuthProvider = ({ children }) => {
 
     // code taken
     const [token, setToken] = useState(null)
+    const [justLoggedIn, setJustLoggedIn] = useState(false)
 
     /* *** Register User ****/
     const createUser = (email, password) => {
         setLoader(true);
         return createUserWithEmailAndPassword(auth, email, password)
+
+            // code taken 
+            .then(result => {
+                setJustLoggedIn(true);
+                return result;
+            })
     }
 
     /* *** User Login *****/
     const signIn = (email, password) => {
         setLoader(true);
-        return signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password)
+
+            // code taken 
+            .then(result => {
+                setJustLoggedIn(true);
+                return result;
+            })
     }
 
     /* *******  Google Sign In ********  */
@@ -34,15 +47,27 @@ const AuthProvider = ({ children }) => {
     const googleSignIn = () => {
         setLoader(true);
         return signInWithPopup(auth, googleProvider)
+
+            // code taken 
+            .then(result => {
+                setJustLoggedIn(true);
+                return result;
+            })
     }
 
 
-    /***** Github signIn ****/ 
+    /***** Github signIn ****/
     const githubProvider = new GithubAuthProvider();
 
-    const githubSignIn = () =>{
+    const githubSignIn = () => {
         setLoader(true);
         return signInWithPopup(auth, githubProvider)
+
+        // code taken 
+        .then(result => {
+            setJustLoggedIn(true);
+            return result;
+        })
     }
 
 
@@ -66,12 +91,12 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-                setUser(currentUser)
-                if(currentUser){
-                    const userInfo = {email: currentUser.email}
-                    axiosPublic.post('/jwt', userInfo)
-                    .then(res =>{
-                        if(res.data.token){
+            setUser(currentUser)
+            if (currentUser) {
+                const userInfo = { email: currentUser.email }
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token)
 
                             // code taken
@@ -80,19 +105,19 @@ const AuthProvider = ({ children }) => {
                     })
 
                     // code taken
-                    .catch(error =>{
+                    .catch(error => {
                         console.error("Faialed to fatch token: ", error);
                         localStorage.removeItem("access-token");
                         setToken(null);
                     });
-                }
-                else{
-                    localStorage.removeItem('access-token');
+            }
+            else {
+                localStorage.removeItem('access-token');
 
-                    // code taken 
-                    setToken(null);
-                }
-                setLoader(false);
+                // code taken 
+                setToken(null);
+            }
+            setLoader(false);
         })
 
         return () => {
@@ -106,6 +131,8 @@ const AuthProvider = ({ children }) => {
         user,
         loader,
         token,
+        justLoggedIn,
+        setJustLoggedIn,
         createUser,
         signIn,
         googleSignIn,

@@ -9,6 +9,7 @@ import useTutor from "../../hooks/useTutor";
 import useStudent from "../../hooks/useStudent";
 
 const Navbar = () => {
+    const { user, logOut, loader, justLoggedIn, setJustLoggedIn, } = useAuth();
 
     const navigate = useNavigate();
 
@@ -37,9 +38,9 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        if (!isAdminLoading && !isTutorLoading && !isStudentLoading) {
+        if (justLoggedIn && !isAdminLoading && !isTutorLoading && !isStudentLoading) {
             if (isAdmin) {
-               navigate('/')
+                navigate('/')
             }
             else if (isTutor) {
                 navigate('/')
@@ -47,11 +48,9 @@ const Navbar = () => {
             else if (isStudent) {
                 navigate('/')
             }
+            setJustLoggedIn(false);
         }
-    }, [isAdmin, isAdminLoading, isTutor, isTutorLoading, navigate])
-
-
-    const { user, logOut, loader } = useAuth();
+    }, [isAdmin, isAdminLoading, isTutor, isTutorLoading, navigate, justLoggedIn, setJustLoggedIn])
 
     const navList = <>
         <li className="mr-4"><NavLink to='/'>Home</NavLink></li>

@@ -49,42 +49,78 @@ const CreateSession = () => {
 
                     {/* Form Row */}
                     <div className="md:flex space-y-4 md:space-y-0">
-                        <div className="form-control md:w-1/2">
+                        <div className="form-control md:w-full">
                             <label className="label">
-                                <span className="label-text text-base">Rating</span>
-                            </label>
-                            <select className="select border-2 border-blue-300 w-full" name='rating'>
-                                <option></option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-
-                        <div className="form-control md:w-1/2 md:ml-4">
-                            <label className="label">
-                                <span className="label-text text-base">Short Description</span>
+                                <span className="label-text text-base">Session Description</span>
                             </label>
                             <label className="input-group ">
-                                <input type="text" name="description" placeholder="Short Description" className="input input-bordered w-full border-2 border-blue-300" />
+                                <input type="text" name="description" placeholder="Session Description" className="input input-bordered w-full border-2 border-blue-300" />
                             </label>
                         </div>
                     </div>
 
                     {/* Form Row */}
-                    <div >
-                        <div className="form-control w-full">
+                    <div className="md:flex space-y-4 md:space-y-0">
+                        <div className="form-control md:w-1/2">
                             <label className="label">
-                                <span className="label-text text-base">Book Image</span>
+                                <span className="label-text text-base">Registration Start Date</span>
                             </label>
                             <label className="input-group ">
-                                <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full border-2 border-blue-300" />
+                                <input type="date" name="registration_start_date" className="input input-bordered w-full border-2 border-blue-300" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/2 md:ml-4">
+                            <label className="label">
+                                <span className="label-text text-base">Registration End Date</span>
+                            </label>
+                            <label className="input-group ">
+                                <input type="date" name="registration_end_date" className="input input-bordered w-full border-2 border-blue-300" />
                             </label>
                         </div>
                     </div>
-                    <input type="submit" value="Add Book" className="btn btn-block bg-primary text-white" />
+
+                    {/* Form Row */}
+                    <div className="md:flex space-y-4 md:space-y-0">
+                        <div className="form-control md:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-base">Class Start Date</span>
+                            </label>
+                            <label className="input-group ">
+                                <input type="date" name="class_start_date" className="input input-bordered w-full border-2 border-blue-300" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/2 md:ml-4">
+                            <label className="label">
+                                <span className="label-text text-base">Class End Date</span>
+                            </label>
+                            <label className="input-group ">
+                                <input type="date" name="class_end_date" className="input input-bordered w-full border-2 border-blue-300" />
+                            </label>
+                        </div>
+                    </div>
+
+                    {/* Form Row */}
+                    <div className="md:flex space-y-4 md:space-y-0">
+                        <div className="form-control md:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-base">Session Duration</span>
+                            </label>
+                            <label className="input-group ">
+                                <input type="number" name="session_duration" className="input input-bordered w-full border-2 border-blue-300" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/2 md:ml-4">
+                            <label className="label">
+                                <span className="label-text text-base">Registration fee</span>
+                            </label>
+                            <label className="input-group ">
+                                <input type="text" defaultValue={0} readOnly name="registration_fee" className="input input-bordered w-full border-2 border-blue-300" />
+                            </label>
+                        </div>
+                    </div>
+
+                   
+                    <input type="submit" value="Create Session" className="btn btn-block bg-primary text-white" />
                 </form>
 
             </div>
