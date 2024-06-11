@@ -13,6 +13,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
 
+    // code taken
+    const [token, setToken] = useState(null)
+
     /* *** Register User ****/
     const createUser = (email, password) => {
         setLoader(true);
@@ -70,11 +73,24 @@ const AuthProvider = ({ children }) => {
                     .then(res =>{
                         if(res.data.token){
                             localStorage.setItem('access-token', res.data.token)
+
+                            // code taken
+                            setToken(res.data.token)
                         }
                     })
+
+                    // code taken
+                    .catch(error =>{
+                        console.error("Faialed to fatch token: ", error);
+                        localStorage.removeItem("access-token");
+                        setToken(null);
+                    });
                 }
                 else{
-                    localStorage.removeItem('access-token')
+                    localStorage.removeItem('access-token');
+
+                    // code taken 
+                    setToken(null);
                 }
                 setLoader(false);
         })
@@ -83,12 +99,13 @@ const AuthProvider = ({ children }) => {
             unSubscribe()
         }
 
-    }, [])
+    }, [axiosPublic])
 
 
     const authInfo = {
         user,
         loader,
+        token,
         createUser,
         signIn,
         googleSignIn,

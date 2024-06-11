@@ -1,14 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import demoImg from '../../assets/user.png';
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { IoMoonOutline } from "react-icons/io5";
 import { FiSun } from "react-icons/fi";
+import useAdmin from "../../hooks/useAdmin";
+import useTutor from "../../hooks/useTutor";
 
 const Navbar = () => {
 
-    const isAdmin = true;
-    const isTutor = false;
+    const navigate = useNavigate();
+
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isTutor, isTutorLoading] = useTutor();
+    // const isAdmin = false;
+    // const isTutor = false;
     const isStudent = false;
 
     const [theme, setTheme] = useState(
@@ -31,23 +37,35 @@ const Navbar = () => {
     }, [theme])
 
 
+    useEffect(() => {
+        if (!isAdminLoading && !isTutorLoading) {
+            if (isAdmin) {
+               navigate('/')
+            }
+            else if (isTutor) {
+                navigate('/')
+            }
+        }
+    }, [isAdmin, isAdminLoading, isTutor, isTutorLoading, navigate])
+
+
     const { user, logOut, loader } = useAuth();
 
     const navList = <>
         <li className="mr-4"><NavLink to='/'>Home</NavLink></li>
         {
             user && isAdmin && <>
-                <li className="mr-4"><Link to='/dashboard/admin-home'>Dashboard</Link></li>
+                <li className="mr-4"><Link to='/dashboard/admin-home'>Admin Dashboard</Link></li>
             </>
         }
         {
             user && isTutor && <>
-                <li className="mr-4"><Link to='/dashboard/tutor-home'>Dashboard</Link></li>
+                <li className="mr-4"><Link to='/dashboard/tutor-home'>Tutor Dashboard</Link></li>
             </>
         }
         {
             user && isStudent && <>
-                <li className="mr-4"><Link to='/dashboard/student-home'>Dashboard</Link></li>
+                <li className="mr-4"><Link to='/dashboard/student-home'>Student Dashboard</Link></li>
             </>
         }
     </>
@@ -68,7 +86,7 @@ const Navbar = () => {
                         {navList}
                     </ul>
                 </div>
-                <img src="https://i.ibb.co/2t6pQmf/photo-1593882100241-aef1449fe351.jpg" alt="" className="h-10 w-10 rounded-full"/>
+                <img src="https://i.ibb.co/2t6pQmf/photo-1593882100241-aef1449fe351.jpg" alt="" className="h-10 w-10 rounded-full" />
                 <a className="btn btn-ghost text-sm md:text-xl">Knowledge Jutsu</a>
             </div>
             <div className="navbar-center hidden lg:flex">

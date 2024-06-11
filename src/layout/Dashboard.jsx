@@ -6,11 +6,14 @@ import { GrNotes } from 'react-icons/gr';
 import { SiSession, SiSessionize, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
+import useTutor from '../hooks/useTutor';
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
-    const isTutor = false;
+    const [isTutor] = useTutor();
+    // const isAdmin = false;
+    // const isTutor = false;
     const isStudent = false;
 
     return (
@@ -52,7 +55,7 @@ const Dashboard = () => {
                             {
                                 isTutor &&
                                 <>
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/student-home'><FaHome></FaHome>Tutor Home</NavLink></li>
+                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/tutor-home'><FaHome></FaHome>Tutor Home</NavLink></li>
 
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-session'><SiStudyverse></SiStudyverse> Create Study Session</NavLink></li>
 
@@ -61,8 +64,6 @@ const Dashboard = () => {
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/upload-materials'><GiExplosiveMaterials></GiExplosiveMaterials> Upload Materials</NavLink></li>
 
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-materials'><DiMaterializecss></DiMaterializecss> View Materials</NavLink></li>
-
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-notes'><GrNotes></GrNotes> View Notes</NavLink></li>
                                 </>
                             }
 

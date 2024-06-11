@@ -6,7 +6,7 @@ const Home = () => {
         <>
             <HelmetHook name={"Home"}></HelmetHook>
 
-            This is faking home
+           Under Construction
         </>
     );
 };
