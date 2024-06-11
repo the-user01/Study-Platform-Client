@@ -6,6 +6,7 @@ import { IoMoonOutline } from "react-icons/io5";
 import { FiSun } from "react-icons/fi";
 import useAdmin from "../../hooks/useAdmin";
 import useTutor from "../../hooks/useTutor";
+import useStudent from "../../hooks/useStudent";
 
 const Navbar = () => {
 
@@ -13,9 +14,7 @@ const Navbar = () => {
 
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isTutor, isTutorLoading] = useTutor();
-    // const isAdmin = false;
-    // const isTutor = false;
-    const isStudent = false;
+    const [isStudent, isStudentLoading] = useStudent();
 
     const [theme, setTheme] = useState(
         localStorage.getItem('theme') ? localStorage.getItem("theme") : "light"
@@ -38,11 +37,14 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        if (!isAdminLoading && !isTutorLoading) {
+        if (!isAdminLoading && !isTutorLoading && !isStudentLoading) {
             if (isAdmin) {
                navigate('/')
             }
             else if (isTutor) {
+                navigate('/')
+            }
+            else if (isStudent) {
                 navigate('/')
             }
         }

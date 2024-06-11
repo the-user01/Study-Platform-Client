@@ -7,14 +7,13 @@ import { SiSession, SiSessionize, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 import useTutor from '../hooks/useTutor';
+import useStudent from '../hooks/useStudent';
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
     const [isTutor] = useTutor();
-    // const isAdmin = false;
-    // const isTutor = false;
-    const isStudent = false;
+    const [isStudent] = useStudent();
 
     return (
         <div className='flex'>

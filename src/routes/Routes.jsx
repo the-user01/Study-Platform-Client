@@ -24,6 +24,7 @@ import StudyMaterials from "../pages/Dashboard/student/StudyMaterials/StudyMater
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoute from "./AdminRoute";
 import TutorRoute from "./TutorRoute";
+import StudentRoute from "./StudentRoute";
 
 
 const router = createBrowserRouter([
@@ -98,23 +99,23 @@ const router = createBrowserRouter([
 
       {
         path: 'student-home',
-        element: <StudentHome></StudentHome>
+        element: <StudentRoute><StudentHome></StudentHome></StudentRoute>
       },
       {
         path: 'booked-session',
-        element: <BookedSession></BookedSession>
+        element: <StudentRoute><BookedSession></BookedSession></StudentRoute>
       },
       {
         path: 'create-note',
-        element: <CreateNote></CreateNote>
+        element: <StudentRoute><CreateNote></CreateNote></StudentRoute>
       },
       {
         path: 'personal-notes',
-        element: <PersonalNotes></PersonalNotes>
+        element: <StudentRoute><PersonalNotes></PersonalNotes></StudentRoute>
       },
       {
         path: 'view-study-materials',
-        element: <StudyMaterials></StudyMaterials>
+        element: <StudentRoute><StudyMaterials></StudyMaterials></StudentRoute>
       },
     ]
   }
