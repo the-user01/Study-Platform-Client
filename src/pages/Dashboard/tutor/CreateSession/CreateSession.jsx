@@ -1,8 +1,56 @@
+import Swal from "sweetalert2";
 import DashboardHelmet from "../../../../hooks/DashboardHelmet";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const CreateSession = () => {
     const { user } = useAuth();
+
+    const axiosPublic = useAxiosPublic();
+
+    const handleCreateSession = e => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const sessionTitle = form.session_title.value;
+        const tutorName = form.tutor_name.value;
+        const tutorEmail = form.tutor_email.value;
+        const description = form.description.value;
+        const regStartDate = form.registration_start_date.value;
+        const regEndDate = form.registration_end_date.value;
+        const classStartDate = form.class_start_date.value;
+        const classEndDate = form.class_end_date.value;
+        const sessionDuration = form.session_duration.value;
+        const regFee = form.registration_fee.value;
+        const status = "pending";
+
+        const createSessionInfo = {
+            sessionTitle,
+            tutorName,
+            tutorEmail,
+            description,
+            status,
+            regStartDate,
+            regEndDate,
+            classStartDate,
+            classEndDate,
+            sessionDuration,
+            regFee,
+        }
+
+        axiosPublic.post("/create-session", createSessionInfo)
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Session Created Successfully",
+                });
+
+                form.reset()
+            })
+
+    }
 
     return (
         <div>
@@ -12,7 +60,7 @@ const CreateSession = () => {
             </div>
 
             <div>
-                <form className="space-y-4 mt-6" >
+                <form className="space-y-4 mt-6" onSubmit={handleCreateSession}>
                     {/* Form Row */}
                     <div className="md:flex items-center space-y-4 md:space-y-0">
                         <div className="form-control md:w-full">
@@ -49,7 +97,8 @@ const CreateSession = () => {
 
                     {/* Form Row */}
                     <div className="md:flex space-y-4 md:space-y-0">
-                        <div className="form-control md:w-full">
+
+                        <div className="form-control md:w-full ">
                             <label className="label">
                                 <span className="label-text text-base">Session Description</span>
                             </label>
@@ -119,7 +168,7 @@ const CreateSession = () => {
                         </div>
                     </div>
 
-                   
+
                     <input type="submit" value="Create Session" className="btn btn-block bg-primary text-white" />
                 </form>
 
