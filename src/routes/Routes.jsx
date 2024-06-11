@@ -16,7 +16,6 @@ import CreateSession from "../pages/Dashboard/tutor/CreateSession/CreateSession"
 import AllStudySession from "../pages/Dashboard/tutor/AllStudySession/AllStudySession";
 import UploadMaterial from "../pages/Dashboard/tutor/UploadMaterial/UploadMaterial";
 import ViewMaterials from "../pages/Dashboard/tutor/ViewMaterials/ViewMaterials";
-import ViewNotes from "../pages/Dashboard/tutor/ViewNotes/ViewNotes";
 import StudentHome from "../pages/Dashboard/student/StudentHome/StudentHome";
 import BookedSession from "../pages/Dashboard/student/BookedSession/BookedSession";
 import CreateNote from "../pages/Dashboard/student/CreateNote/CreateNote";
