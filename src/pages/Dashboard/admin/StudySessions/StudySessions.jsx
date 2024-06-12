@@ -4,12 +4,14 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 
 const StudySessions = () => {
     const [title, setTitle] = useState("");
     const [newSession, setNewSession] = useState();
     const axiosSecure = useAxiosSecure();
 
+    // fetching pending session data
     const { data: studySessions, isPending: isSessionLoading, refetch } = useQuery({
         queryKey: ['studySessions'],
         queryFn: async () => {
@@ -19,7 +21,15 @@ const StudySessions = () => {
         },
     })
 
-    refetch();
+    // fetching pending approved data
+    const { data: approvedStudySessions, isPending: isApprovedSessionLoading } = useQuery({
+        queryKey: ['approvedStudySessions'],
+        queryFn: async () => {
+            // load pending sessions
+            const res = await axiosSecure.get("/create-session/approved")
+            return res.data;
+        },
+    })
 
 
     const handleReject = (session) => {
@@ -63,7 +73,7 @@ const StudySessions = () => {
         const form = e.target;
         const regFee = form.registration_fee.value;
 
-        axiosSecure.patch(`/create-session/approve/${session._id}`, {regFee})
+        axiosSecure.patch(`/create-session/approve/${session._id}`, { regFee })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     refetch();
@@ -78,7 +88,7 @@ const StudySessions = () => {
             })
     }
 
-
+    refetch();
 
 
 
@@ -163,9 +173,64 @@ const StudySessions = () => {
 
                     </div>
                 </dialog>
-
             </div>
+
+            {/* Showing Approved Sessions */}
+            <div className="mt-10">
+                <div>
+                    <h2 className="text-xl lg:text-3xl text-green-700">Approved Sessions</h2>
+                </div>
+
+                <div className="mt-8">
+                    <div className="overflow-x-auto">
+                        <table className="table table-zebra">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Title</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {!isApprovedSessionLoading ?
+                                    approvedStudySessions.map((session, idx) =>
+                                        <tr key={session._id}>
+                                            <th> {idx + 1}</th>
+                                            <td>{session.sessionTitle}</td>
+
+                                            <td>
+                                                <button
+                                                    className="btn btn-ghost ">
+                                                    <FaRegEdit className="text-lg "></FaRegEdit>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-ghost ">
+                                                    <FaTrash className="text-lg text-red-600 "></FaTrash>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ) :
+                                    <tr >
+                                        <td className="text-center p-4" colSpan="4">
+                                            <span className="loading loading-dots loading-lg"></span>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
     );
 };
 
