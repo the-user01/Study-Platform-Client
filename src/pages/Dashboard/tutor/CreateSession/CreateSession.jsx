@@ -2,11 +2,13 @@ import Swal from "sweetalert2";
 import DashboardHelmet from "../../../../hooks/DashboardHelmet";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const CreateSession = () => {
     const { user } = useAuth();
 
-    const axiosPublic = useAxiosPublic();
+    // const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const handleCreateSession = e => {
         e.preventDefault();
@@ -39,7 +41,7 @@ const CreateSession = () => {
             regFee,
         }
 
-        axiosPublic.post("/create-session", createSessionInfo)
+        axiosSecure.post("/create-session", createSessionInfo)
             .then(() => {
                 Swal.fire({
                     icon: "success",
