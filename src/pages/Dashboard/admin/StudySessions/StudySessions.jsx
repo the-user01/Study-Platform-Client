@@ -10,7 +10,8 @@ const StudySessions = () => {
     const { data: studySessions, isPending: isSessionLoading, refetch } = useQuery({
         queryKey: ['studySessions'],
         queryFn: async () => {
-            const res = await axiosSecure.get("/create-session")
+            // load pending sessions
+            const res = await axiosSecure.get("/create-session/pending")
             return res.data;
         },
     })
@@ -29,17 +30,17 @@ const StudySessions = () => {
             confirmButtonText: "Yes, reject it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // axiosSecure.delete(`/users/${id}`)
-                    // .then(res => {
-                    //     if (res.data.deletedCount > 0) {
-                    //         refetch();
-                    //         Swal.fire({
-                    //             title: "Deleted!",
-                    //             text: "Your file has been deleted.",
-                    //             icon: "success"
-                    //         });
-                    //     }
-                    // })
+                axiosSecure.patch(`/create-session/reject/${session._id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Rejected!",
+                                text: `${session.sessionTitle} has been rejected.`,
+                                icon: "success",
+                            });
+                        }
+                    })
 
             }
         });
