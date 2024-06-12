@@ -1,7 +1,6 @@
 import { CgNotes } from 'react-icons/cg';
 import { DiMaterializecss } from 'react-icons/di';
 import { FaHome, FaUsers } from 'react-icons/fa';
-import { GiExplosiveMaterials } from 'react-icons/gi';
 import { GrNotes } from 'react-icons/gr';
 import { SiSession, SiSessionize, SiStudyverse } from 'react-icons/si';
 import { Link, NavLink, Outlet } from 'react-router-dom';
@@ -59,8 +58,6 @@ const Dashboard = () => {
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/create-session'><SiStudyverse></SiStudyverse> Create Study Session</NavLink></li>
 
                                     <li className='text-sm lg:text-base  shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-all-sessions'><SiSession></SiSession> View All Study Sessions</NavLink></li>
-
-                                    <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/upload-materials'><GiExplosiveMaterials></GiExplosiveMaterials> Upload Materials</NavLink></li>
 
                                     <li className='text-sm lg:text-base shadow-xl p-2 rounded-md'><NavLink to='/dashboard/view-materials'><DiMaterializecss></DiMaterializecss> View Materials</NavLink></li>
                                 </>

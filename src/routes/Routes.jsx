@@ -85,7 +85,7 @@ const router = createBrowserRouter([
         element: <TutorRoute><AllStudySession></AllStudySession></TutorRoute>
       },
       {
-        path: 'upload-materials',
+        path: 'upload-materials/:id',
         element: <TutorRoute><UploadMaterial></UploadMaterial></TutorRoute>
       },
       {

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { MdCloudUpload } from "react-icons/md";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllStudySession = () => {
     const axiosSecure = useAxiosSecure();
@@ -29,17 +30,17 @@ const AllStudySession = () => {
     })
 
 
-    const handleNewRequest = (session) =>{
+    const handleNewRequest = (session) => {
         axiosSecure.patch(`/create-session/pending/${session._id}`)
-        .then(()=>{
-            refetch();
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "New Request Sent Successfully",
-            });
+            .then(() => {
+                refetch();
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "New Request Sent Successfully",
+                });
 
-        })
+            })
     }
 
 
@@ -48,7 +49,7 @@ const AllStudySession = () => {
         <div>
             <DashboardHelmet name='Study Sessions'></DashboardHelmet>
 
-        {/* Approved Session */}
+            {/* Approved Session */}
             <div>
                 <div>
                     <h2 className="text-xl lg:text-3xl text-green-700">Approved Sessions</h2>
@@ -74,12 +75,15 @@ const AllStudySession = () => {
                                                 <td>{session.sessionTitle}</td>
 
                                                 <td>
-                                                    <button
-                                                        className="btn btn-ghost ">
-                                                        <MdCloudUpload className="text-2xl "></MdCloudUpload>
-                                                    </button>
+                                                    <Link to={`/dashboard/upload-materials/:${session._id}`}>
+                                                        <button
+                                                            className="btn btn-ghost ">
+                                                            <MdCloudUpload className="text-2xl "></MdCloudUpload>
+                                                        </button>
+                                                    </Link>
+
                                                 </td>
-                                               
+
                                             </tr>
                                         ) :
                                         <tr >
@@ -96,8 +100,8 @@ const AllStudySession = () => {
                     </div>
                 </div>
             </div>
-        
-        {/* Rejected Session */}
+
+            {/* Rejected Session */}
             <div className="mt-14">
                 <div>
                     <h2 className="text-xl lg:text-3xl text-red-700">Rejected Sessions</h2>
@@ -128,12 +132,12 @@ const AllStudySession = () => {
 
                                                 <td>
                                                     <button
-                                                    onClick={()=>handleNewRequest(session)}
+                                                        onClick={() => handleNewRequest(session)}
                                                         className="btn btn-ghost ">
-                                                       <VscGitPullRequestGoToChanges className="text-2xl"/>
+                                                        <VscGitPullRequestGoToChanges className="text-2xl" />
                                                     </button>
                                                 </td>
-                                               
+
                                             </tr>
                                         ) :
                                         <tr >
