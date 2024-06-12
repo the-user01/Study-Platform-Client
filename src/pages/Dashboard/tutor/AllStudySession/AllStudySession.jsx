@@ -3,6 +3,7 @@ import DashboardHelmet from "../../../../hooks/DashboardHelmet";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { MdCloudUpload } from "react-icons/md";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
+import Swal from "sweetalert2";
 
 const AllStudySession = () => {
     const axiosSecure = useAxiosSecure();
@@ -18,7 +19,7 @@ const AllStudySession = () => {
     })
 
     // fetching pending rejected data
-    const { data: rejectedStudySessions, isPending: isRejectedSessionLoading } = useQuery({
+    const { data: rejectedStudySessions, isPending: isRejectedSessionLoading, refetch } = useQuery({
         queryKey: ['rejectedStudySessions'],
         queryFn: async () => {
             // load pending sessions
@@ -26,6 +27,20 @@ const AllStudySession = () => {
             return res.data;
         },
     })
+
+
+    const handleNewRequest = (session) =>{
+        axiosSecure.patch(`/create-session/pending/${session._id}`)
+        .then(()=>{
+            refetch();
+            Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "New Request Sent Successfully",
+            });
+
+        })
+    }
 
 
 
@@ -113,6 +128,7 @@ const AllStudySession = () => {
 
                                                 <td>
                                                     <button
+                                                    onClick={()=>handleNewRequest(session)}
                                                         className="btn btn-ghost ">
                                                        <VscGitPullRequestGoToChanges className="text-2xl"/>
                                                     </button>
