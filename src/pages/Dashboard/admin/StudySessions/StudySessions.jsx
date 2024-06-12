@@ -3,8 +3,11 @@ import DashboardHelmet from "../../../../hooks/DashboardHelmet";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const StudySessions = () => {
+    const [title, setTitle] = useState("");
+    const [newSession, setNewSession] = useState();
     const axiosSecure = useAxiosSecure();
 
     const { data: studySessions, isPending: isSessionLoading, refetch } = useQuery({
@@ -44,8 +47,40 @@ const StudySessions = () => {
 
             }
         });
-
     }
+
+    // handling modal
+    const handleOpenModal = (session) => {
+        document.getElementById('my_modal_3').showModal();
+        setTitle(session.sessionTitle);
+        setNewSession(session);
+    }
+
+
+    const handleApprove = (e, session) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const regFee = form.registration_fee.value;
+
+        axiosSecure.patch(`/create-session/approve/${session._id}`, {regFee})
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        title: "Approved!",
+                        text: `${session.sessionTitle} has been approved.`,
+                        icon: "success",
+                    });
+                    form.reset();
+                    document.getElementById('my_modal_3').close();
+                }
+            })
+    }
+
+
+
+
 
     return (
         <div>
@@ -76,6 +111,9 @@ const StudySessions = () => {
 
                                         <td>
                                             <button
+                                                onClick={() =>
+                                                    handleOpenModal(session)
+                                                }
                                                 className="btn btn-ghost ">
                                                 <FcApprove className="text-xl "></FcApprove>
                                                 Approve</button>
@@ -100,6 +138,32 @@ const StudySessions = () => {
                         </tbody>
                     </table>
                 </div>
+
+                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+
+                        <h3 className="font-bold text-lg">{title}</h3>
+
+                        <form onSubmit={(e) => handleApprove(e, newSession)}>
+                            <div className="form-control md:w-full">
+                                <label className="label">
+                                    <span className="label-text text-base">Session fee (If the session is free then put 0)</span>
+                                </label>
+                                <label className="input-group ">
+                                    <input type="text" name="registration_fee" placeholder="Session Fee" className="input input-bordered w-full border-2 border-blue-300" />
+                                </label>
+                            </div>
+                            <input type="submit" value="Update" className="mt-4 btn btn-block bg-primary text-white" />
+                        </form>
+
+                    </div>
+                </dialog>
+
             </div>
         </div>
     );
