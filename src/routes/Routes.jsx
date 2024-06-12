@@ -26,7 +26,6 @@ import AdminRoute from "./AdminRoute";
 import TutorRoute from "./TutorRoute";
 import StudentRoute from "./StudentRoute";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
