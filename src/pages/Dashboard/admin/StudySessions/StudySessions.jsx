@@ -31,8 +31,20 @@ const StudySessions = () => {
         },
     })
 
+    const handleRejectModal = (session) => {
+        document.getElementById('rejection').showModal();
+        setTitle(session.sessionTitle);
+        setNewSession(session);
+    }
 
-    const handleReject = (session) => {
+    // reject button
+    const handleReject = (e, session) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const rejectionReason = form.regection_reason.value;
+        const feedback = form.feedback.value;
+        document.getElementById('rejection').close();
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -43,7 +55,7 @@ const StudySessions = () => {
             confirmButtonText: "Yes, reject it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/create-session/reject/${session._id}`)
+                axiosSecure.patch(`/create-session/reject/${session._id}`, {rejectionReason, feedback})
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
                             refetch();
@@ -52,6 +64,9 @@ const StudySessions = () => {
                                 text: `${session.sessionTitle} has been rejected.`,
                                 icon: "success",
                             });
+
+                            form.reset();
+                            
                         }
                     })
 
@@ -130,7 +145,7 @@ const StudySessions = () => {
                                         </td>
                                         <td>
                                             <button
-                                                onClick={() => handleReject(session)}
+                                                onClick={() => handleRejectModal(session)}
                                                 className="btn btn-ghost ">
                                                 <FcDisapprove className="text-xl "></FcDisapprove>
                                                 Reject</button>
@@ -149,7 +164,7 @@ const StudySessions = () => {
                     </table>
                 </div>
 
-                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                {/* This is for approval */}
                 <dialog id="my_modal_3" className="modal">
                     <div className="modal-box">
                         <form method="dialog">
@@ -171,6 +186,33 @@ const StudySessions = () => {
                             <input type="submit" value="Update" className="mt-4 btn btn-block bg-primary text-white" />
                         </form>
 
+                    </div>
+                </dialog>
+
+
+                {/*This modal is for rejection */}
+                <dialog id="rejection" className="modal">
+                    <div className="modal-box">
+
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                        <h3 className="font-bold text-lg">{title}</h3>
+
+                        <form onSubmit={(e)=>handleReject(e,newSession)}>
+                            <div className="form-control md:w-full">
+                                <label className="input-group mt-4">
+                                    <input type="text" name="regection_reason" placeholder="Rejection Reason" className="input input-bordered w-full border-2 border-blue-300" />
+                                </label>
+                            </div>
+                            <div className="form-control md:w-full">
+                                <label className="input-group mt-4">
+                                    <input type="text" name="feedback" placeholder="Feedback" className="input input-bordered w-full border-2 border-blue-300" />
+                                </label>
+                            </div>
+                            <input type="submit" value="Submit" className="mt-4 btn btn-block bg-primary text-white" />
+                        </form>
                     </div>
                 </dialog>
             </div>
