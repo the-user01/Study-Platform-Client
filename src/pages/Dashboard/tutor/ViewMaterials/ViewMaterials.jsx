@@ -64,7 +64,7 @@ const ViewMaterials = () => {
                     {!isviewMaterialsLoading ?
                         viewMaterials.map(material =>
                             <div key={material._id} className="card w-96 bg-base-100 shadow-xl">
-                                <figure><img src={material.image} alt="Shoes" /></figure>
+                                <figure><img src={material.image} alt={material.title} /></figure>
                                 <div className="card-body">
 
                                     <h2 className="card-title">{material.title} </h2>
@@ -93,7 +93,6 @@ const ViewMaterials = () => {
                     }
                 </div>
             </div>
-
 
             <dialog id="update-material" className="modal">
                 <div className="modal-box">
