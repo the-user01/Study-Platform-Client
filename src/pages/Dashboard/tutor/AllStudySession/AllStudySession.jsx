@@ -75,7 +75,7 @@ const AllStudySession = () => {
                                                 <td>{session.sessionTitle}</td>
 
                                                 <td>
-                                                    <Link to={`/dashboard/upload-materials/:${session._id}`}>
+                                                    <Link to={`/dashboard/upload-materials/${session._id}`}>
                                                         <button
                                                             className="btn btn-ghost ">
                                                             <MdCloudUpload className="text-2xl "></MdCloudUpload>
