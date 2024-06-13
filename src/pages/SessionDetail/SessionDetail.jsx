@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const SessionDetail = () => {
     const params = useParams();
@@ -15,7 +16,18 @@ const SessionDetail = () => {
         }
     })
 
-    const regFee = parseInt(loadSessionDetail.regFee)
+    const regFee = parseInt(loadSessionDetail.regFee);
+
+    const handleAddSession = (session)=>{
+        axiosSecure.post("/booked-session", loadSessionDetail)
+        .then(()=>{
+            Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: `${session.sessionTitle} booked Successful`,
+            });
+        })
+    }
 
     return (
         <div>
@@ -77,7 +89,9 @@ const SessionDetail = () => {
                                         <button >Book Now</button>
                                     </Link> :
 
-                                    <button className="btn btn-outline bg-red-700 text-white w-full">Book Now</button>
+                                    <button
+                                    onClick={()=>handleAddSession(loadSessionDetail)}
+                                    className="btn btn-outline bg-red-700 text-white w-full">Book Now</button>
                             }
                         </div>
 

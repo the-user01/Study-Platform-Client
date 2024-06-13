@@ -27,6 +27,7 @@ import TutorRoute from "./TutorRoute";
 import StudentRoute from "./StudentRoute";
 import SessionDetail from "../pages/SessionDetail/SessionDetail";
 import Payment from "../pages/Payment/Payment";
+import BookedSessionDetails from "../pages/Dashboard/student/BookedSession/BookedSessionDetails";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: 'booked-session',
         element: <StudentRoute><BookedSession></BookedSession></StudentRoute>
+      },
+      {
+        path: 'booked-session-details/:id',
+        element: <StudentRoute><BookedSessionDetails></BookedSessionDetails></StudentRoute>
       },
       {
         path: 'create-note',
