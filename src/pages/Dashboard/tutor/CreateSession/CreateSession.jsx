@@ -1,13 +1,11 @@
 import Swal from "sweetalert2";
 import DashboardHelmet from "../../../../hooks/DashboardHelmet";
 import useAuth from "../../../../hooks/useAuth";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const CreateSession = () => {
     const { user } = useAuth();
 
-    // const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
     const handleCreateSession = e => {
