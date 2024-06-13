@@ -25,6 +25,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import AdminRoute from "./AdminRoute";
 import TutorRoute from "./TutorRoute";
 import StudentRoute from "./StudentRoute";
+import SessionDetail from "../pages/SessionDetail/SessionDetail";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/session-detail/:id",
+        element: <PrivateRoutes><SessionDetail></SessionDetail></PrivateRoutes>,
+      },
+      {
+        path: "/payment/:id",
+        element: <PrivateRoutes><Payment></Payment></PrivateRoutes>,
+      },
+      {
         path: "/login",
         element: <Login></Login>,
       },
@@ -46,6 +56,8 @@ const router = createBrowserRouter([
       },
     ]
   },
+
+  // Dashboard Routes
   {
     path: 'dashboard',
     element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
