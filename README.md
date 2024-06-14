@@ -1,8 +1,22 @@
-# React + Vite
+# Knowledge Jutsu
+## Live link:  https://study-platform-c102f.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Admin Information
+- UserEmail: tiya@shalik.com
+- UserPass: Tiya123
 
-Currently, two official plugins are available:
+Konwledge Jutsu is a collaborative platform for Students and Teachers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features:
+- Role based (Student, Teacher, Admin) login & registartion
+- Role based resource access
+- Students can see study sessions & can book session
+- After booking session students can see study materials related to study session
+- Students can create note & also manage created all notes
+- Teachers can create study sessions
+- Teachers can see their Approved or Rejected Sessions
+- Teachers can upload study materials related to approved setudy sessions
+- Teachers can send request to Admin for rejected sesssions
+- Admin can see all the users and their role and can delete users
+- Admin can approve or reject study sessions
+- Admin can see all the study materials those are uploaded by teachers and can manage them 
