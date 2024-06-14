@@ -3,8 +3,8 @@ const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-300 text-base-content mt-6 pt-16">
             <aside>
-                <p className="text-2xl font-bold">Book-Mania(c)</p>
-                <p>Get your desired books by a single click</p>
+                <p className="text-2xl font-bold">Knowledge Jutsu</p>
+                <p>Suitable platform for your education</p>
             </aside>
             <nav>
                 <h6 className="footer-title">Services</h6>

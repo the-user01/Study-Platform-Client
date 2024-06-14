@@ -1,6 +1,7 @@
 import HelmetHook from "../../../hooks/HelmetHook";
 import Banner from "../Banner/Banner";
 import Sessions from "../Sessions/Sessions";
+import Tutors from "../Tutors/Tutors";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             
             <Banner></Banner>
             <Sessions></Sessions>
+            <Tutors></Tutors>
         </>
     );
 };
